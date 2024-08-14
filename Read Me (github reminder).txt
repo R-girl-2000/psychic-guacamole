@@ -1,0 +1,1 @@
+psychic guacamole is my GitHub repository (file folder) for my R code. Saving code here allows me to publish changes to GitHub as I go, so I don't have to manually do it. 
