@@ -433,3 +433,29 @@ shuffle <- cards$shuffle
 deal
 shuffle
 environment(deal)
+# this arrangement is called closure, where setup's runtime environments encloses the deal and shuffle functions. 
+# to preserve global deck, create function that uses RT deck. 
+setup <- function(deck){
+  DECK <- deck
+  
+  DEAL <- function(){
+    card <- deck[1,]
+    assign("deck", DECK[random, ], envir = parent.env(environment()))
+    card
+  }
+  SHUFFLE <-function(){
+    random<- sample(1:52, size =52)
+    assign("deck", DECK[random,], envir = parent.env(environment()))
+  }
+  list(deal = DEAL, shuffle= SHUFFLE)
+  }
+cards <- setup(deck)
+deal <- cards$deal
+shuffle <- cards$shuffle
+
+deal
+shuffle
+# CAN delete global copy of deck and still play cards
+rm(deck)
+shuffle()
+deal()
