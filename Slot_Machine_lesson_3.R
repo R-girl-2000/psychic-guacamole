@@ -6,3 +6,10 @@ get_symbols<-function(){
          prob = c(0.03, 0.03,0.06, 0.1, 0.25, 0.01, 0.52))
 }
 get_symbols()
+# to make coding programs easier, break into sequential steps or parallell cases/ 
+play <- function(){
+  symbols<-get_symbols()
+  print(symbols)
+  score(symbols)
+}
+# sequential program. first define symbols, then print them, then score. 
