@@ -13,3 +13,24 @@ play <- function(){
   score(symbols)
 }
 # sequential program. first define symbols, then print them, then score. 
+#paralell program:
+symbols<- get_symbols()
+#If then statements
+num <- -1 
+if (num<0) {
+  print("num is negative")
+  print("dont worry, I'll fix it.")
+  num <- num*-1
+  print("now num is positive")
+}
+num
+#else statements
+a <- 3.14
+dec <- a - trunc(a)
+dec
+if(dec >= .5){
+  a <- trunc(a) + 1
+} else {
+  a <-trunc(a)
+}
+a
