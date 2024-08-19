@@ -237,5 +237,11 @@ play<- function(){
   score(symbols)
 }
 play()
-
+--------------------------------------------------------------------
+# learn about S3 system
+num <- 1000000000
+print(num)
+class(num) <- c("POSIXct", "POSIXt")
+print(num)
+#assigned POSIXct class to num. the print function looks at an objects class before it runs.
 
