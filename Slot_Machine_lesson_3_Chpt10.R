@@ -24,8 +24,11 @@ get_symbols<- function(){
     }
     #adjust for diamonds
     diamonds <- sum(symbols == "DD")
-    prize* diamonds ^ 2
+    if (diamonds == 0) {diamonds <- diamonds +1}
+    prize* diamonds^ 2
   }
+  score(symbols)
+  symbols <- c('0','DD','c')
   ----------------------------------------------------------
   #play slots
   play<- function(){
@@ -33,6 +36,7 @@ get_symbols<- function(){
     print(symbols)
     score(symbols)
   }
+  play()
 -----------------------------------------------------------
   # Use the S3 system
 Num <- 1000000
@@ -82,7 +86,7 @@ attr(one_play, "score")<- score(symbols)
 attr(one_play, "score")
 #also doesn't work, symbols has no attributes. 
 
-#exercise 10.1, add an attribute to play. Assigns symbols as attribute to prize.
+#exercise 10.1, add an attribute to play. Assign symbols as attribute to prize.
 play<- function(){
   symbols <- get_symbols()
   prize <-  score(symbols)
@@ -109,7 +113,7 @@ slot_display <- function(prize){
   cat(string)
 }
 slot_display(one_play)
-}
+
 
 #step by step,save attr of prize called symbols to an object called symbols
 symbols <- attr(prize, "symbols")
@@ -125,3 +129,40 @@ cat(string)
 
 #use full function to clean up the output of play. 
 slot_display(play())
+
+# Print is a general function, evaluates class of arg and then assigns correct form of print.
+# these diff forms of print are called "methods".
+print
+print.POSIXct
+print.factor
+# use the S3 method system on on_play
+class(one_play) <- "slots"
+print.slots <- function(x, ...) {
+  cat("I'm using the print.slots method")
+}
+
+# now test if it works
+print(one_play)
+one_play
+
+rm(print.slots)
+# some R objects have multiple classes, for example:
+now <- Sys.time()
+attributes(now)
+# Write a new print method for the slots class. This method should call slot_display to return a well formatted slot-machine output. 
+print.slots <- function(x, ...) {
+  slot_display(x)
+}
+#now R will automatically use the slot_display function to dispaly objects of the class +slots+
+one_play
+# assign slots class to the play function
+play <- function(){
+  symbols <-get_symbols()
+  structure(score(symbols), symbols = symbols, class = "slots")
+}
+play()
+#test class of play function
+class(play())
+
+# see the number of methods created for a class. 
+methods(class = "factor")
