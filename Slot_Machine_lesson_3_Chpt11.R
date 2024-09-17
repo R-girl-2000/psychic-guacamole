@@ -69,6 +69,21 @@ slot_results$prob2 <- pofslot[slot_results$Var2]
 slot_results$prob3 <- pofslot[slot_results$Var3]
 head(slot_results)
 slot_results$probability <- slot_results$prob1 * slot_results$prob2* slot_results$prob3
-head(slot_results,25)\
+head(slot_results,25)
 #check math
 sum(slot_results$probability)
+#create for loop to score the rolls. Use this to calculate the expected value E{x}= xp(x)
+for (value in c("my", "first", "for", "loop")){
+  print("one run")
+}
+#the that object is a set of objects. the code in between the braces  will run once for each member of that. 
+#runs one print for each value in "my first for loop"
+#can use any symbol you like.
+#create an empty list to save output to.
+chars <- vector(length= 4)
+words <- c("my", "second", "for", "loop")
+for (i in 1:4){
+  chars[i] <- words[i]
+}
+chars
+#create  a for loop for 
